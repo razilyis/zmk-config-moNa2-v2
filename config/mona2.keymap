@@ -85,34 +85,34 @@
             sensor-bindings = <&scroll_up_down>;
         };
 
-        layer_1 {
+        Function_Layer {
             bindings = <
-&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp NUMBER_4       &kp NUMBER_5                    &kp NUMBER_6  &kp NUMBER_7          &kp NUMBER_8           &kp NUMBER_9  &kp NUMBER_0
-&trans        &trans        &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans                  &trans  &trans        &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans        &kp BACKSLASH
-&trans        &trans        &trans            &trans             &trans        &trans    &trans  &trans        &trans                &trans                 &trans        &kp PIPE
-&trans        &trans        &trans            &trans             &trans        &trans    &trans  &trans                                                                   &trans
+&kp LC(A)  &kp LC(X)     &kp LC(C)    &kp LC(V)  &kp LC(F)                           &kp LESS_THAN         &kp GREATER_THAN       &kp CARET        &kp PERCENT    &kp DOLLAR
+&kp TAB    &kp LEFT_ALT  &kp LS(TAB)  &mkp MB1   &mkp MB2             &trans         &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp AT_SIGN      &kp AMPERSAND  &kp DOUBLE_QUOTES
+&trans     &trans        &trans       &trans     &mkp MB3   &trans    &kp COLON      &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp EXCLAMATION  &kp QUESTION   &kp SQT
+&trans     &trans        &trans       &trans     &trans     &trans    &kp BACKSPACE  &kp ENTER                                                                    &trans
             >;
 
             sensor-bindings = <&scroll_right_left>;
         };
 
-        layer_2 {
+        Common_Layer {
             bindings = <
-&kp EXCLAMATION  &kp AT_SIGN  &kp POUND          &kp DOLLAR  &kp PERCENT                      &kp CARET  &kp AMPERSAND  &kp ASTERISK  &kp MINUS  &kp UNDERSCORE
-&kp GRAVE        &kp TILDE    &kp DOUBLE_QUOTES  &kp SQT     &trans                  &trans   &mkp MB3   &mkp MB1       &mkp MB2      &kp EQUAL  &kp PLUS
-&kp F1           &kp F2       &kp F3             &kp F4      &kp F5       &kp F11    &kp F12  &kp F6     &kp F7         &kp F8        &kp F9     &kp F10
-&trans           &trans       &trans             &trans      &trans       &trans     &trans   &trans                                             &trans
+&kp ESCAPE      &trans        &trans       &kp LG(UP_ARROW)    &trans                                    &kp LC(W)          &kp LA(LEFT_ARROW)  &mkp MB3        &kp LA(RIGHT_ARROW)  &kp HOME
+&kp TAB         &kp LEFT_ALT  &kp LS(TAB)  &kp LG(LEFT_ARROW)  &kp LG(RIGHT_ARROW)            &trans     &kp LC(PAGE_UP)    &mkp MB1            &kp UP_ARROW    &kp EQUAL            &kp PAGE_UP
+&kp LEFT_SHIFT  &trans        &trans       &kp LG(DOWN_ARROW)  &trans               &trans    &kp LC(T)  &kp LC(PAGE_DOWN)  &kp LEFT_ARROW      &kp DOWN_ARROW  &kp RIGHT_ARROW      &kp PAGE_DOWN
+&kp LCTRL       &trans        &trans       &trans              &trans               &trans    &trans     &trans                                                                      &kp END
             >;
 
             sensor-bindings = <&scroll_up_down>;
         };
 
-        layer_3 {
+        Num_Layer {
             bindings = <
-&trans  &kp LC(LS(TAB))     &kp PRINTSCREEN         &kp LC(TAB)              &trans                                     &trans  &kp HOME        &kp UP_ARROW    &kp END          &trans
-&trans  &kp LG(LEFT_ARROW)  &kp LG(RIGHT_ARROW)     &kp LC(LG(LEFT_ARROW))   &kp LC(LG(RIGHT_ARROW))            &trans  &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans
-&trans  &kp LEFT_SHIFT      &kp LG(LS(LEFT_ARROW))  &kp LG(LS(RIGHT_ARROW))  &trans                   &trans    &trans  &trans  &kp DELETE      &kp PAGE_UP     &kp PAGE_DOWN    &trans
-&trans  &trans              &trans                  &trans                   &trans                   &trans    &trans  &trans                                                   &trans
+&kp F1   &kp F2   &kp F3  &kp F4  &kp F5                            &kp PLUS      &kp MINUS  &kp N7  &kp N8  &kp N9
+&kp F6   &kp F7   &kp F8  &kp F9  &kp F10            &trans         &kp EQUAL     &kp COLON  &kp N4  &kp N5  &kp N6
+&kp F11  &kp F12  &trans  &trans  &trans   &trans    &trans         &kp ASTERISK  &kp FSLH   &kp N1  &kp N2  &kp N3
+&trans   &trans   &trans  &trans  &trans   &trans    &kp BACKSPACE  &kp ENTER                                &kp N0
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
