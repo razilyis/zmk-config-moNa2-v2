@@ -147,10 +147,10 @@
 
         Mac-Common_Layer {
             bindings = <
-&kp ESCAPE      &trans        &trans       &kp LG(UP_ARROW)    &trans                                           &kp LG(W)          &kp LG(LEFT_ARROW)  &mkp MB3        &kp LG(RIGHT_ARROW)  &kp HOME
-&kp TAB         &kp LEFT_ALT  &kp LS(TAB)  &kp LG(LEFT_ARROW)  &kp LG(RIGHT_ARROW)                   &kp LG(T)  &kp LG(PAGE_UP)    &mkp MB1            &kp UP_ARROW    &mkp MB2             &kp PAGE_UP
-&kp LEFT_SHIFT  &trans        &trans       &kp LG(DOWN_ARROW)  &trans               &kp LG(LS(S))    &kp LG(T)  &kp LG(PAGE_DOWN)  &kp LEFT_ARROW      &kp DOWN_ARROW  &kp RIGHT_ARROW      &kp PAGE_DOWN
-&kp LCTRL       &trans        &trans       &trans              &trans               &trans           &trans     &trans                                                                      &kp END
+&kp ESCAPE      &trans        &trans       &kp LG(UP_ARROW)    &trans                                           &kp LG(W)                &kp LG(LEFT_ARROW)  &mkp MB3        &kp LG(RIGHT_ARROW)  &kp HOME
+&kp TAB         &kp LEFT_ALT  &kp LS(TAB)  &kp LG(LEFT_ARROW)  &kp LG(RIGHT_ARROW)                   &kp LG(T)  &kp LG(LA(LEFT_ARROW))   &mkp MB1            &kp UP_ARROW    &mkp MB2             &kp PAGE_UP
+&kp LEFT_SHIFT  &trans        &trans       &kp LG(DOWN_ARROW)  &trans               &kp LG(LS(S))    &kp LG(T)  &kp LG(LA(RIGHT_ARROW))  &kp LEFT_ARROW      &kp DOWN_ARROW  &kp RIGHT_ARROW      &kp PAGE_DOWN
+&kp LCTRL       &trans        &trans       &trans              &trans               &trans           &trans     &trans                                                                            &kp END
             >;
 
             sensor-bindings = <&scroll_up_down>;
