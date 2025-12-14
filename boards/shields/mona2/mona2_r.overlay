@@ -83,26 +83,26 @@
 /* -------------------------------------------------
  * Input listener
  * ------------------------------------------------- */
+/ {
+    cirque_central_listener: cirque_central_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&cirque>;
 
-
-&cirque_central_listener {
-    status = "okay";
-
-    /* Cirque デバイスを紐づける */
-    device = <&cirque>;
-
-    /* 通常カーソル用 */
-    input-processors =
-        <&zip_xy_scaler 4 1>;
-
-    /* スクロール用（レイヤー 3 / 7） */
-    scroller {
-        layers = <3 7>;
+        /* 通常カーソル */
         input-processors =
-            <&zip_xy_scaler 4 1>,
-            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
-            <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-            <&zip_scroll_scaler 1 5>;
+            <&zip_xy_scaler 4 1>;
+
+        /* スクロール（レイヤー 3 / 7） */
+        scroller {
+            layers = <3 7>;
+            input-processors =
+                <&zip_xy_scaler 4 1>
+                <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>
+                <&zip_xy_to_scroll_mapper>
+                <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>
+                <&zip_scroll_scaler 1 5>;
+        };
     };
 };
+
