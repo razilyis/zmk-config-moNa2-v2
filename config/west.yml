@@ -6,8 +6,6 @@ manifest:
       url-base: https://github.com/razilyis
     - name: caksoylar  # <-- RGB LED
       url-base: https://github.com/caksoylar  
-    - name: cirque-input-module
-      url: https://github.com/petejohanson
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -16,6 +14,7 @@ manifest:
     - name: cirque-input-module
       remote: razilyis
       revision: main
+      path: modules/lib/cirque-input-module
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
