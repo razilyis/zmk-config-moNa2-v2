@@ -12,11 +12,11 @@
 
 &kscan0 {
     col-gpios =
-        <&xiao_d 10 (GPIO_ACTIVE_HIGH)>
-        , <&xiao_d 9  (GPIO_ACTIVE_HIGH)>
-        , <&xiao_d 8  (GPIO_ACTIVE_HIGH)>
-        , <&xiao_d 7  (GPIO_ACTIVE_HIGH)>
-        , <&gpio0 10  (GPIO_ACTIVE_HIGH)>
+        <&xiao_d 10 (GPIO_ACTIVE_HIGH)>,
+        <&xiao_d 9  (GPIO_ACTIVE_HIGH)>,
+        <&xiao_d 8  (GPIO_ACTIVE_HIGH)>,
+        <&xiao_d 7  (GPIO_ACTIVE_HIGH)>,
+        <&gpio0 10  (GPIO_ACTIVE_HIGH)>
         ;
 };
 
@@ -59,14 +59,14 @@
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
 
+    /* ★CS は SPI バス側に置く（ここが正解） */
+    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;   /* P0.09 CS */
+
     cirque: pinnacle@0 {
         status = "okay";
         compatible = "cirque,pinnacle";
         reg = <0>;
         spi-max-frequency = <2000000>;
-
-        /* ★CS はここ */
-        cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;   /* P0.09 CS */
 
         irq-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 MOTION */
 
@@ -80,7 +80,7 @@
 };
 
 /* -------------------------------------------------
- * Input listener (new node under root)
+ * Input listener (root node)
  * ------------------------------------------------- */
 
  / {
@@ -89,8 +89,7 @@
         status = "okay";
         device = <&cirque>;
 
-        input-processors =
-            <&zip_xy_scaler 4 1>;
+        input-processors = <&zip_xy_scaler 4 1>;
 
         scroller {
             layers = <3 7>;
