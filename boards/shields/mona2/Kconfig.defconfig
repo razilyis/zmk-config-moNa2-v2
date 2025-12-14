@@ -18,10 +18,14 @@ config ZMK_POINTING
 config SPI
     default y
 
-config PMW3610
-    default y
+# PMW3610（旧トラックボール）は使用しないため削除
+# （型なし定義による Kconfig warning の原因）
+#
+# config PMW3610
+#     default y
 
 endif
+
 
 if SHIELD_MONA2_R || SHIELD_MONA2_L
 
