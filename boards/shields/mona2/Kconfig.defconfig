@@ -18,8 +18,24 @@ config ZMK_POINTING
 config SPI
     default y
 
-# PMW3610（旧トラックボール）は使用しないため削除
-# （型なし定義による Kconfig warning の原因）
+#
+# ---- Cirque Pinnacle ----
+#
+# ここが必要（DTで device が生成されるため）
+#
+# ※どちらが存在するかは module/zephyr の Kconfig 定義次第
+#   - CONFIG_PINNACLE が存在する環境
+#   - CONFIG_INPUT_PINNACLE が存在する環境
+#
+config PINNACLE
+    default y
+
+config INPUT_PINNACLE
+    default y
+
+#
+# ---- PMW3610（旧トラックボール）は使わない ----
+# （型なし定義 warning の原因になっていたので無効のまま）
 #
 # config PMW3610
 #     default y
