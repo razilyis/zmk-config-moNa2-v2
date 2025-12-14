@@ -1,4 +1,4 @@
-,if SHIELD_MONA2_R
+if SHIELD_MONA2_R
 
 config ZMK_KEYBOARD_NAME
     default "mona2"
@@ -18,9 +18,11 @@ config ZMK_POINTING
 config SPI
     default y
 
-# PMW3610（旧トラックボール）は使用しないため削除
-# （型なし定義による Kconfig warning の原因）
-#
+# ★ Cirque Pinnacle driver enable（まずはこれを試す）
+config PINNACLE
+    default y
+
+# PMW3610 は使わない
 # config PMW3610
 #     default y
 
