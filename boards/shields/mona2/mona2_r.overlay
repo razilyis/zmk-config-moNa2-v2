@@ -59,18 +59,16 @@
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
 
-    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;   /* P0.09 CS */
+    cs-gpios = <&gpio0 9 (GPIO_ACTIVE_LOW)>;   /* P0.09 CS */
 
-    /* Cirque trackpad */
     cirque: cirque@0 {
         compatible = "zmk,pinnacle";
         status = "okay";
         reg = <0>;
         spi-max-frequency = <2000000>;
 
-        irq-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 MOTION */
+        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW)>; /* P0.02 MOTION */
 
-        /* 向き（必要に応じて後で調整） */
         invert-x;
         invert-y;
 
@@ -81,19 +79,18 @@
 };
 
 /* -------------------------------------------------
- * Input listener
+ * Input listener (new node under root)
  * ------------------------------------------------- */
-{
+
+ / {
     cirque_central_listener: cirque_central_listener {
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&cirque>;
 
-        /* 通常カーソル */
         input-processors =
             <&zip_xy_scaler 4 1>;
 
-        /* スクロール（レイヤー 3 / 7） */
         scroller {
             layers = <3 7>;
             input-processors =
