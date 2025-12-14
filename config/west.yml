@@ -2,32 +2,22 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: sayu-hub
-      url-base: https://github.com/sayu-hub
     - name: razilyis
       url-base: https://github.com/razilyis
-    # - name: sekigon-gonnoc  # <-- PAW3222
-    #   url-base: https://github.com/sekigon-gonnoc
     - name: caksoylar  # <-- RGB LED
       url-base: https://github.com/caksoylar  
-    - name: zettaface  # <-- Input Processor Keybind
-      url-base: https://github.com/zettaface
+    - name: cirque-input-module
+      url: https://github.com/petejohanson
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: v0.3.0
       import: app/west.yml
-    - name: zmk-pmw3610-driver-b
+    - name: cirque-input-module
       remote: razilyis
       revision: main
-    # - name: zmk-driver-paw3222
-    #   remote: sekigon-gonnoc
-    #   revision: main
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: main
-    - name: zmk-input-processor-keybind
-      remote: zettaface
       revision: main
   self:
     path: config
