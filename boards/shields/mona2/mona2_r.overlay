@@ -59,15 +59,16 @@
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
 
-    cs-gpios = <&gpio0 9 (GPIO_ACTIVE_LOW)>;   /* P0.09 CS */
-
-    cirque: cirque@0 {
-        compatible = "zmk,pinnacle";
+    cirque: pinnacle@0 {
         status = "okay";
+        compatible = "cirque,pinnacle";
         reg = <0>;
         spi-max-frequency = <2000000>;
 
-        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW)>; /* P0.02 MOTION */
+        /* ★CS はここ */
+        cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;   /* P0.09 CS */
+
+        irq-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 MOTION */
 
         invert-x;
         invert-y;
