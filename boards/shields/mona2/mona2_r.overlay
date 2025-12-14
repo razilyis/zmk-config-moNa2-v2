@@ -84,16 +84,16 @@
  * Input listener
  * ------------------------------------------------- */
 
-cirque_central_listener: cirque_central_listener {
-    compatible = "zmk,input-listener";
+
+&cirque_central_listener {
     status = "okay";
 
-    /* ← ここで Cirque デバイスを紐づける */
+    /* Cirque デバイスを紐づける */
     device = <&cirque>;
 
     /* 通常カーソル用 */
     input-processors =
-        <&zip_xy_scaler 4 1>;     /* カーソル速度 */
+        <&zip_xy_scaler 4 1>;
 
     /* スクロール用（レイヤー 3 / 7） */
     scroller {
