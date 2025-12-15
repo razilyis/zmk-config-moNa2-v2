@@ -85,6 +85,7 @@
 
  / {
     cirque_central_listener: cirque_central_listener {
+        compatible = "zmk,input-listener"; 
         status = "okay";
         device = <&cirque>;
     };
