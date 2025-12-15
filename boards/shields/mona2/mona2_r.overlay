@@ -76,8 +76,6 @@
 
         /* TM035035 DR -> P0.02 */
         dr-gpios = <&gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
-        invert-x;
-        invert-y;
     };
 };
 
@@ -90,5 +88,7 @@
         compatible = "zmk,input-listener"; 
         status = "okay";
         device = <&cirque>;
+
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
     };
 };
