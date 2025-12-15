@@ -54,13 +54,10 @@
 
 &spi0 {
     status = "okay";
-
     pinctrl-0 = <&spi0_default>;
     pinctrl-1 = <&spi0_sleep>;
     pinctrl-names = "default", "sleep";
-
-    /* CS が未定義なら有効化（ピン番号は配線に合わせて） */
-    /* cs-gpios = <&gpio0 11 GPIO_ACTIVE_LOW>; */
+    cs-gpios = <&gpio0 11 GPIO_ACTIVE_LOW>;
 
     cirque: pinnacle@0 {
         status = "okay";
@@ -68,11 +65,8 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
 
-        dr-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 DR */
+        irq-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; 
 
-        /* ★ここは削除（bindingに無いのでビルドが落ちる） */
-        /* invert-x; */
-        /* invert-y; */
     };
 };
 
@@ -84,10 +78,5 @@
     cirque_central_listener: cirque_central_listener {
         status = "okay";
         device = <&cirque>;
-
-        /* ★反転はここでやる（X/Y両方反転の例） */
-        input-processors =
-            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
-            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>;
     };
 };
