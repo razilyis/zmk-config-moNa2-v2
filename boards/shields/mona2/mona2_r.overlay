@@ -22,52 +22,70 @@
 };
 
 /* -------------------------------------------------
- * Cirque (Pinnacle) via spi-gpio (SDIO 1-wire)
+ * SPI pinctrl (Cirque / TM035035)
  *   SCK  = P0.05
- *   SDIO = P0.04 (SI/SO shared)
- *   CS   = P0.09
- *   DR   = P0.02
+ *   MOSI = P0.16 (TM035035 SI)
+ *   MISO = P0.04 (TM035035 SO)
  * ------------------------------------------------- */
 
- / {
-    cirque_spi: cirque_spi {
-        compatible = "spi-gpio";
-        status = "okay";
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        /* SCK: TM035035 SCK -> P0.05 */
-        sck-gpios  = <&gpio0 5 GPIO_ACTIVE_HIGH>;
-
-        /* SDIO: TM035035 SI/SO -> P0.04 */
-        mosi-gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
-        miso-gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
-
-        /* CS: TM035035 SS -> P0.09 */
-        cs-gpios   = <&gpio0 9 GPIO_ACTIVE_LOW>;
-
-        cirque: pinnacle@0 {
-            status = "okay";
-            compatible = "cirque,pinnacle";
-            reg = <0>;
-
-            /* まずは低めで安定させる */
-            spi-max-frequency = <1000000>;
-
-            /* DR: TM035035 DR -> P0.02 */
-            dr-gpios = <&gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+&pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            psels = <
+                NRF_PSEL(SPIM_SCK,  0, 5)   /* P0.05 SCK  */
+                NRF_PSEL(SPIM_MOSI, 0, 16)  /* P0.16 MOSI (SI) */
+                NRF_PSEL(SPIM_MISO, 0, 4)   /* P0.04 MISO (SO) */
+            >;
         };
     };
 
-    /* -------------------------------------------------
-     * Input listener (root node)
-     * ------------------------------------------------- */
+    spi0_sleep: spi0_sleep {
+        group1 {
+            psels = <
+                NRF_PSEL(SPIM_SCK,  0, 5)
+                NRF_PSEL(SPIM_MOSI, 0, 16)
+                NRF_PSEL(SPIM_MISO, 0, 4)
+            >;
+            low-power-enable;
+        };
+    };
+};
+
+/* -------------------------------------------------
+ * SPI + Cirque (Pinnacle)
+ *   CS = P0.09
+ *   DR = P0.02
+ * ------------------------------------------------- */
+
+&spi0 {
+    status = "okay";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+
+    /* TM035035 SS -> P0.09 */
+    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+
+    cirque: pinnacle@0 {
+        status = "okay";
+        compatible = "cirque,pinnacle";
+        reg = <0>;
+
+        /* まずは控えめ。動いたら上げる */
+        spi-max-frequency = <1000000>;
+
+        /* TM035035 DR -> P0.02 */
+        dr-gpios = <&gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    };
+};
+
+/* -------------------------------------------------
+ * Input listener (root node)
+ * ------------------------------------------------- */
+
+ / {
     cirque_central_listener: cirque_central_listener {
         status = "okay";
         device = <&cirque>;
     };
 };
-
-/* -------------------------------------------------
- * 以降の pinctrl と &spi0 ブロックは不要なので削除！
- * ------------------------------------------------- */
