@@ -18,13 +18,9 @@ config ZMK_POINTING
 config SPI
     default y
 
-# ★ Cirque Pinnacle driver enable（まずはこれを試す）
 config PINNACLE
     default y
 
-# PMW3610 は使わない
-# config PMW3610
-#     default y
 
 endif
 
