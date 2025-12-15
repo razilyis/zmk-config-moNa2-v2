@@ -19,7 +19,7 @@ config SPI
     default y
 
 config PINNACLE
-    default y
+    def_bool y
 
 
 endif
