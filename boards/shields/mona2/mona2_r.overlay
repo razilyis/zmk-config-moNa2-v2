@@ -68,7 +68,7 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
 
-        irq-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 MOTION */
+        data-ready-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 DR */
 
         invert-x;
         invert-y;
