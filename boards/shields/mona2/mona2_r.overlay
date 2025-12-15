@@ -53,13 +53,6 @@
 
 &spi0 {
     status = "okay";
-    compatible = "nordic,nrf-spim";
-
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
-    pinctrl-names = "default", "sleep";
-
-    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;   /* P0.09 CS */
 
     cirque: pinnacle@0 {
         status = "okay";
@@ -67,14 +60,10 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
 
-        data-ready-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 DR */
+        dr-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 DR */
 
         invert-x;
         invert-y;
-
-        evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
     };
 };
 
