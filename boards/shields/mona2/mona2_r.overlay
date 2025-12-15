@@ -54,12 +54,26 @@
 &spi0 {
     status = "okay";
 
+    /* ★これが必須（無いと pinctrl-0 required で落ちる） */
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+
+    /*
+     * CSピンを spi0 側で指定していない場合は必要。
+     * もし別の dtsi/overlay ですでに cs-gpios を定義しているなら、ここは不要。
+     *
+     * 例（あなたの配線に合わせて変更）:
+     * cs-gpios = <&gpio0 11 GPIO_ACTIVE_LOW>;
+     */
+
     cirque: pinnacle@0 {
         status = "okay";
         compatible = "cirque,pinnacle";
         reg = <0>;
         spi-max-frequency = <2000000>;
 
+        /* cirque-input-module 側のプロパティ名 */
         dr-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>; /* P0.02 DR */
 
         invert-x;
