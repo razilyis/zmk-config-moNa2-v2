@@ -11,10 +11,10 @@ manifest:
       remote: zmkfirmware
       revision: v0.3.0
       import: app/west.yml
-    - name: cirque-input-module
+    - name: zmk-driver-iqs7211e
       remote: razilyis
-      revision: main
-      path: modules/lib/cirque-input-module
+      revision: master
+      path: modules/lib/zmk-driver-iqs7211e
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
