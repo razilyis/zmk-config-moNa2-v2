@@ -15,12 +15,12 @@ config INPUT
 config ZMK_POINTING
     default y
 
-config SPI
+# --- Trackpad driver (IQS7211E) ---
+config I2C
     default y
 
-config PINNACLE
-    def_bool y
-
+config IQS7211E
+    default y
 
 endif
 
