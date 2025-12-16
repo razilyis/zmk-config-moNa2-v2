@@ -22,72 +22,70 @@
 };
 
 /* -------------------------------------------------
- * SPI pinctrl (Cirque / TM035035)
- *   SCK  = P0.05
- *   MOSI = P0.16 (TM035035 SI)
- *   MISO = P0.04 (TM035035 SO)
+ * I2C pinctrl (IQS7211E)
+ *   SCL = P0.05  (元SPI SCK)
+ *   SDA = P0.04  (元SPI MISO)
  * ------------------------------------------------- */
 
 &pinctrl {
-    spi0_default: spi0_default {
+    i2c0_default: i2c0_default {
         group1 {
             psels = <
-                NRF_PSEL(SPIM_SCK,  0, 5)   /* P0.05 SCK  */
-                NRF_PSEL(SPIM_MOSI, 0, 16)  /* P0.16 MOSI (SI) */
-                NRF_PSEL(SPIM_MISO, 0, 4)   /* P0.04 MISO (SO) */
+                NRF_PSEL(TWIM_SCL, 0, 5)  /* P0.05 -> SCL */
+                NRF_PSEL(TWIM_SDA, 0, 4)  /* P0.04 -> SDA */
             >;
+            bias-pull-up;
         };
     };
 
-    spi0_sleep: spi0_sleep {
+    i2c0_sleep: i2c0_sleep {
         group1 {
             psels = <
-                NRF_PSEL(SPIM_SCK,  0, 5)
-                NRF_PSEL(SPIM_MOSI, 0, 16)
-                NRF_PSEL(SPIM_MISO, 0, 4)
+                NRF_PSEL(TWIM_SCL, 0, 5)
+                NRF_PSEL(TWIM_SDA, 0, 4)
             >;
+            bias-pull-up;
             low-power-enable;
         };
     };
 };
 
 /* -------------------------------------------------
- * SPI + Cirque (Pinnacle)
- *   CS = P0.09
- *   DR = P0.02
+ * I2C + IQS7211E
+ *   RDY(IRQ) = P0.02  (元Cirque DR)
+ *   I2C addr = 0x56
  * ------------------------------------------------- */
 
-&spi0 {
+&i2c0 {
     status = "okay";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
+    compatible = "nordic,nrf-twim";
+    pinctrl-0 = <&i2c0_default>;
+    pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
 
-    /* TM035035 SS -> P0.09 */
-    cs-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+    clock-frequency = <I2C_BITRATE_FAST>;
+    zephyr,concat-buf-size = <32>;
 
-    cirque: pinnacle@0 {
+    trackpad: trackpad@56 {
         status = "okay";
-        compatible = "cirque,pinnacle";
-        reg = <0>;
+        compatible = "azoteq,iqs7211e";
+        reg = <0x56>;
 
-        /* まずは控えめ。動いたら上げる */
-        spi-max-frequency = <1000000>;
-
-        /* TM035035 DR -> P0.02 */
-        dr-gpios = <&gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_HIGH)>;
+        /* RDYは基本アクティブLow想定（RDYがLowで割り込み） */
+        irq-gpios = <&gpio0 2 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
     };
 };
 
 /* -------------------------------------------------
  * Input listener (root node)
+ * （座標反転などをここでやりたい場合）
  * ------------------------------------------------- */
 
  / {
-    cirque_central_listener: cirque_central_listener {
-        compatible = "zmk,input-listener"; 
+    iqs_central_listener: iqs_central_listener {
+        compatible = "zmk,input-listener";
         status = "okay";
-        device = <&cirque>;
+        device = <&trackpad>;
 
         input-processors = <
           &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
