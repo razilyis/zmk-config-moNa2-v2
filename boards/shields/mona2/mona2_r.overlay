@@ -92,5 +92,19 @@
         input-processors = <
           &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
         >;
+
+        /* スクロールレイヤー*/
+        scroller {
+            layers = <2>;
+
+            /* 1) 左右反転 → 2) XYをスクロールへ変換 → 3) スクロール速度調整 */
+            input-processors = <
+                &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
+                &zip_xy_to_scroll_mapper
+                &zip_scroll_scaler 1 4
+            >;
+        };
+
+
     };
 };
