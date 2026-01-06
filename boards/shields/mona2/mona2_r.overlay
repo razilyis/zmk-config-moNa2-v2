@@ -95,7 +95,7 @@
 
         /* スクロールレイヤー*/
         scroller {
-            layers = <2>;
+            layers = <3>;
 
             /* 1) 左右反転 → 2) XYをスクロールへ変換 → 3) スクロール速度調整 */
             input-processors = <
