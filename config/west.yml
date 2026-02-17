@@ -17,6 +17,6 @@ manifest:
       path: modules/lib/cirque-input-module
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: main
+      revision: v0.3-branch
   self:
     path: config
