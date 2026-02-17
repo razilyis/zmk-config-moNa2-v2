@@ -183,4 +183,3 @@ sensor-bindings = <&rsr_pg>;
 
 補足:
 - 現在の `mona2_r.overlay` は、既存の `zip_*` 変換を維持しつつ `&scroll_runtime_input_processor` を追加する構成。
-- 既存挙動を保ったまま DYA Studio 側の runtime 調整を使いたい場合に安全な構成です。
