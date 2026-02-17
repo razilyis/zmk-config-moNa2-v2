@@ -70,6 +70,12 @@
 
     scroller {
         layers = <3>;
-        input-processors = <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+        input-processors =
+            <&zip_xy_transform INPUT_TRANSFORM_X_INVERT
+             &zip_xy_to_scroll_mapper
+             &zip_scroll_transform INPUT_TRANSFORM_X_INVERT
+             &zip_scroll_scaler 1 5
+             &scroll_runtime_input_processor>;
     };
 };
+
