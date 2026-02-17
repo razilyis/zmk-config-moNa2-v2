@@ -1,4 +1,4 @@
-manifest:
+﻿manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -25,9 +25,10 @@ manifest:
     #   revision: main
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: main
+      revision: v0.3-branch
     - name: zmk-input-processor-keybind
       remote: zettaface
       revision: main
   self:
     path: config
+
