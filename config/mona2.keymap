@@ -62,7 +62,6 @@
             #sensor-binding-cells = <0>;
             cw-binding = <&msc SCRL_DOWN>;
             ccw-binding = <&msc SCRL_UP>;
-
             tap-ms = <20>;
         };
 
@@ -71,7 +70,6 @@
             #sensor-binding-cells = <0>;
             cw-binding = <&msc SCRL_LEFT>;
             ccw-binding = <&msc SCRL_RIGHT>;
-
             tap-ms = <20>;
         };
 
@@ -80,7 +78,6 @@
             #sensor-binding-cells = <0>;
             cw-binding = <&kp C_VOL_DN>;
             ccw-binding = <&kp C_VOL_UP>;
-
             tap-ms = <20>;
         };
 
@@ -89,7 +86,6 @@
             #sensor-binding-cells = <0>;
             cw-binding = <&kp PG_UP>;
             ccw-binding = <&kp PAGE_DOWN>;
-
             tap-ms = <20>;
         };
     };
@@ -124,7 +120,7 @@
 &kp EXCLAMATION  &kp AT_SIGN  &kp POUND          &kp DOLLAR  &kp PERCENT                      &kp CARET  &kp AMPERSAND  &kp ASTERISK  &kp MINUS  &kp UNDERSCORE
 &kp GRAVE        &kp TILDE    &kp DOUBLE_QUOTES  &kp SQT     &trans                  &trans   &mkp MB3   &mkp MB1       &mkp MB2      &kp EQUAL  &kp PLUS
 &kp F1           &kp F2       &kp F3             &kp F4      &kp F5       &kp F11    &kp F12  &kp F6     &kp F7         &kp F8        &kp F9     &kp F10
-&trans           &trans       &trans             &trans      &trans       &trans     &trans   &trans                                             &trans
+&studio_unlock   &trans       &trans             &trans      &trans       &trans     &trans   &trans                                             &trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
