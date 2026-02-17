@@ -83,6 +83,15 @@
 
             tap-ms = <20>;
         };
+
+        rsr_pg: rsr_pg {
+            compatible = "zmk,behavior-runtime-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            cw-binding = <&kp PG_UP>;
+            ccw-binding = <&kp PAGE_DOWN>;
+
+            tap-ms = <20>;
+        };
     };
 
     keymap {
