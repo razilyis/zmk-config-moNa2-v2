@@ -177,3 +177,27 @@ behaviors {
 sensor-bindings = <&rsr_vol>;
 sensor-bindings = <&rsr_pg>;
 ```
+
+## 7. `mona2_r.overlay`（runtime-input-processor の listener 設定）
+
+`CONFIG_ZMK_RUNTIME_INPUT_PROCESSOR=y` を有効にするだけでは不十分で、`input-listener` 側にも runtime processor の指定が必要です。
+
+```dts
+#include <input/processors.dtsi>
+#include <input/processors/runtime-input-processor.dtsi>
+
+&trackball_central_listener {
+    status = "okay";
+    device = <&trackball_central>;
+    input-processors = <&mouse_runtime_input_processor>;
+
+    scroller {
+        layers = <3>;
+        input-processors = <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+    };
+};
+```
+
+補足:
+- 既存の固定 `zip_xy_transform` / `zip_scroll_transform` / `zip_scroll_scaler` を残すと、runtime 側調整と責務が重複しやすいです。
+- まずは上記の最小構成に寄せてから、必要な変換だけ追加するのが安全です。
