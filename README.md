@@ -183,3 +183,4 @@ sensor-bindings = <&rsr_pg>;
 
 補足:
 - 現在の `mona2_r.overlay` は、既存の `zip_*` 変換を維持しつつ `&scroll_runtime_input_processor` を追加する構成。
+- `mona2.keymap` に `#define ZMK_POINTING_DEFAULT_SCRL_VAL 100` を置くと、環境によっては `pointing.h` 側定義との再定義 warning が出る場合がある。
