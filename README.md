@@ -2,6 +2,10 @@
 
 `moNa2` で [DYA Studio](https://studio.dya.cormoran.works/) 関連機能を使うための設定メモです。
 
+DYA Studioに接続するときは、事前に「`&studio_unlock`」をキーマップに仕込んでおきます。  
+こちらを押した状態でないとDYA Studioへの接続ができません。  
+（前提: `CONFIG_ZMK_STUDIO_LOCKING=y`）
+
 ## 参照モジュール
 
 - [DYA Studio](https://studio.dya.cormoran.works/)
