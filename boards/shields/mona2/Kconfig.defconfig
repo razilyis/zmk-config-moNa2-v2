@@ -18,7 +18,9 @@ config ZMK_POINTING
 config SPI
     default y
 
-config PMW3610
+# config PMW3610
+#     default y
+config PAW3222
     default y
 
 endif
