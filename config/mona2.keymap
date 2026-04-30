@@ -100,7 +100,7 @@
 
         Win-Fnc {
             bindings = <
-&kp LG(A)  &kp LG(X)  &kp LG(C)    &kp LG(V)  &kp LG(F)                      &kp LESS_THAN         &kp GREATER_THAN       &kp CARET        &kp PERCENT    &kp DOLLAR
+&kp LC(A)  &kp LC(X)  &kp LC(C)    &kp LC(V)  &kp LC(F)                      &kp LESS_THAN         &kp GREATER_THAN       &kp CARET        &kp PERCENT    &kp DOLLAR
 &kp TAB    &kp LALT   &kp LS(TAB)  &mkp MB1   &mkp MB2             &trans    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp AT_SIGN      &kp AMPERSAND  &kp DOUBLE_QUOTES
 &kp LSHFT  &trans     &trans       &trans     &mkp MB3   &trans    &kp PIPE  &kp LBKT              &kp RBKT               &kp EXCLAMATION  &kp QUESTION   &kp SQT
 &kp LCTRL  &trans     &trans       &trans     &trans     &trans    &kp BSPC  &kp ENTER                                                                    &kp HASH
@@ -113,7 +113,7 @@
         Mac-Fnc {
             label = "Mac-Fnc";
             bindings = <
-&kp LC(A)  &kp LC(X)     &kp LC(C)    &kp LC(V)  &kp LC(F)                      &kp LESS_THAN         &kp GREATER_THAN       &kp LCTRL        &kp PERCENT    &kp DOLLAR
+&kp LG(A)  &kp LG(X)     &kp LG(C)    &kp LG(V)  &kp LG(F)                      &kp LESS_THAN         &kp GREATER_THAN       &kp LCTRL        &kp PERCENT    &kp DOLLAR
 &kp TAB    &kp LEFT_GUI  &kp LS(TAB)  &mkp MB1   &mkp MB2             &trans    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp AT_SIGN      &kp AMPERSAND  &kp DOUBLE_QUOTES
 &kp LSHFT  &trans        &trans       &trans     &mkp MB3   &trans    &kp PIPE  &kp LBKT              &kp RBKT               &kp EXCLAMATION  &kp QUESTION   &kp SQT
 &kp LCTRL  &trans        &trans       &trans     &trans     &trans    &kp BSPC  &kp ENTER                                                                    &kp HASH
