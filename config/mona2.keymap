@@ -17,7 +17,7 @@
 
 &trackball {
     arrows {
-        layers = <9>;
+        layers = <10>;
         bindings =
             <&kp RIGHT_ARROW>,
             <&kp LEFT_ARROW>,
