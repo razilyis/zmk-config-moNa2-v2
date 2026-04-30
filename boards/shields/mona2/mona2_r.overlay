@@ -91,4 +91,17 @@
             <&zip_scroll_scaler 1 20>;                           //スクロール量を1/4倍
     };
 
+    arrows {
+        layers = <10>;
+        bindings =
+            <&kp RIGHT_ARROW>,
+            <&kp LEFT_ARROW>,
+            <&kp UP_ARROW>,
+            <&kp DOWN_ARROW>;
+
+        tick = <10>;
+        wait-ms = <5>;
+        tap-ms = <5>;
+    };
+
 };
