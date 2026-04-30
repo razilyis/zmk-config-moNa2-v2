@@ -69,7 +69,7 @@
     device = <&trackball_central>;
     input-processors =
         <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,   //Y軸反転
-        <&zip_temp_layer 7 700>;                        //AML(Layer7)を700msで発動
+        <&zip_temp_layer 8 700>;                        //AML(Layer8)を700msで発動
 
     scroller {
         layers = <6>;
