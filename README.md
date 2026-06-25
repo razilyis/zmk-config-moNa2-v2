@@ -1,42 +1,18 @@
-COROPITを使用する方は以下のようにコードを編集してください。
+# moNa2-v2 (PAW3222対応ブランチ)
 
-mona2_r.overlay
+本ブランチは、トラックボールセンサーとして **PixArt PAW3222** を使用するための設定を含んでいます。
 
-修正前
-```
-  trackball_central: trackball_central@0 {
-        status = "okay";
-        compatible = "pixart,pmw3610";  //トラボセンサ用のドライバとバインド
-        reg = <0>;
-        spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; //P0.02を指定(MOTION)
-        cpi = <600>;
-        //swap-xy;
-        //invert-x; //COROPIT版ではコメントアウトを外す
-        //invert-y; //COROPIT版ではコメントアウトを外す
-        evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
-    };
-};
+## PAW3222 センサーのピンアサイン（変換基板使用時の注意）
 
-```
-**修正後**
-```
-  trackball_central: trackball_central@0 {
-        status = "okay";
-        compatible = "pixart,pmw3610";  //トラボセンサ用のドライバとバインド
-        reg = <0>;
-        spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; //P0.02を指定(MOTION)
-        cpi = <600>;
-        //swap-xy;
-        invert-x; //COROPIT版ではコメントアウトを外す
-        invert-y; //COROPIT版ではコメントアウトを外す
-        evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
-    };
-};
+FPC変換基板を経由してPAW3222センサーを接続する場合、VCCとGNDのショートを防ぐためにケーブルの接続方向を合わせる結果として、ロジックピンの物理的な接続先が入れ替わります。
 
-```
+本ファームウェア（`mona2_r.overlay`）は、この変換基板経由の接続に合わせた以下のピン割り当てで設定されています。
+
+- **3.3V (VDD)** : マイコンの 3.3V ピンへ（変更なし）
+- **GND** : マイコンの GND ピンへ（変更なし）
+- **SCK (SCLK)** : `P0.09` （元のCSピンを利用）
+- **SDIO (MISO/MOSI)** : `P0.04` （SPIデータ通信・変更なし）
+- **CS (CSB)** : `P0.02` （元のMOTIONピンを利用）
+- **MOTION (IRQ)** : `P0.05` （元のSCLKピンを利用）
+
+※ 変換基板を使用しない場合（直結配線など）は、`mona2_r.overlay` のピン割り当てを入れ替える前に戻す必要がありますのでご注意ください。
