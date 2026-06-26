@@ -1,29 +1,64 @@
-# moNa2-v2 (PAW3222対応ブランチ)
+# moNa2-v2 PAW3222 branch
 
-本ブランチは、トラックボールセンサーとして **PixArt PAW3222** を使用するための設定を含んでいます。
+This branch configures moNa2-v2 for a PixArt PAW3222 trackball sensor.
 
-## PAW3222 センサーのピンアサインと変換基板の仕様について
+## PAW3222 wiring
 
-FPC変換基板とFPCケーブルを経由してPAW3222ボードを接続する場合、VCCとGNDがショートしないようにケーブルを接続する（変換基板の1番ピンがPAW3222の6番ピンに繋がる）必要があります。
+The current firmware assumes the `7pin-to-6FFC_Adapter-for-AroundForty`
+adapter board is used between the moNa2 7-pin connector and the PAW3222
+6-pin FFC connector.
 
-この接続方向を前提とすると、通信・割り込み用のロジックピンの物理的な接続先が以下のように入れ替わります。
+### moNa2 7-pin connector
 
-*   **VCC / GND** は正しく一致します。
-*   **PAW側の `SCLK` (5)** は、変換基板の `SS` (2) を経由して、元の基板の **`CS` ピン (P0.09)** に繋がります。
-*   **PAW側の `NCS` (4)** は、変換基板の `DR` (3) を経由して、元の基板の **`MOTION` ピン (P0.02)** に繋がります。
-*   **PAW側の `SDIO` (3)** は、変換基板の `MISO` (4) を経由して、元の基板の **`SDIO` ピン (P0.04)** に繋がります。（これだけは変わりません）
-*   **PAW側の `MOTION` (2)** は、変換基板の `sck` (5) を経由して、元の基板の **`SCLK` ピン (P0.05)** に繋がります。
+| moNa2 pin | Signal |
+| --- | --- |
+| 1 | SCLK |
+| 2 | CS |
+| 3 | GND |
+| 4 | 3.3V |
+| 5 | NC |
+| 6 | SDIO |
+| 7 | MOTION |
 
-### ファームウェアの設定状況
+### AroundForty adapter net mapping
 
-本ブランチのファームウェア（`mona2_r.overlay`）は、この変換基板経由の入れ替わりに合わせた以下のピン割り当てで設定されています。
+| moNa2 7-pin | Adapter net | PAW3222 signal |
+| --- | --- | --- |
+| 1 SCLK | `sck` | MOTION |
+| 2 CS | `SS` | SCLK |
+| 3 GND | `GND` | GND |
+| 4 3.3V | `vcc` | VCC |
+| 5 NC | unconnected | unconnected |
+| 6 SDIO | `MISO` | SDIO |
+| 7 MOTION | `DR` | NCS |
 
-- **3.3V (VDD)** : マイコンの 3.3V ピンへ
-- **GND** : マイコンの GND ピンへ
-- **SCK (SCLK)** : `P0.09` （元のCSピンを利用）
-- **SDIO (MISO/MOSI)** : `P0.04` （変更なし）
-- **CS (CSB)** : `P0.02` （元のMOTIONピンを利用）
-- **MOTION (IRQ)** : `P0.05` （元のSCLKピンを利用）
+Because the adapter swaps the signals, the firmware pin assignment is not the
+same as a direct PAW3222 connection.
 
-> [!WARNING]  
-> 変換基板を使用しない場合（センサー基板をメイン基板に直結配線する場合など）は、物理的なピンの入れ替わりが発生しません。そのため、`mona2_r.overlay` のピン割り当てを上記の変更前の状態（SCLK: P0.05, CS: P0.09, MOTION: P0.02）に戻す必要がありますのでご注意ください。
+## Firmware pin assignment
+
+`boards/shields/mona2/mona2_r.overlay` is configured as follows:
+
+| PAW3222 function | MCU pin used by firmware | Reason |
+| --- | --- | --- |
+| SCLK | `P0.09` | moNa2 CS pin reaches PAW3222 SCLK through the adapter |
+| SDIO | `P0.04` | moNa2 SDIO pin reaches PAW3222 SDIO through the adapter |
+| NCS | `P0.02` | moNa2 MOTION pin reaches PAW3222 NCS through the adapter |
+| MOTION | `P0.05` | moNa2 SCLK pin reaches PAW3222 MOTION through the adapter |
+
+Do not change these back to the direct wiring values while using the
+AroundForty adapter.
+
+## Direct PAW3222 wiring warning
+
+If the PAW3222 board is connected directly without the AroundForty adapter, the
+firmware pin assignment must be changed to:
+
+| PAW3222 function | Direct MCU pin |
+| --- | --- |
+| SCLK | `P0.05` |
+| SDIO | `P0.04` |
+| NCS | `P0.09` |
+| MOTION | `P0.02` |
+
+The direct wiring values are not the active configuration on this branch.
