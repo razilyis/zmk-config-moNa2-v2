@@ -1,4 +1,4 @@
-# moNa2-v2 PAW3222 branch
+# moNa2-v2 PAW3222 with zw3021 branch
 
 This branch configures moNa2-v2 for a PixArt PAW3222 trackball sensor.
 
