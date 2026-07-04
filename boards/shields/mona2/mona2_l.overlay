@@ -1,5 +1,36 @@
 #include "mona2.dtsi"
 
+// Carve out a dedicated NVS partition for ZW3021 per-fingerprint output
+// strings (Left only -- this is where the sensor and its NVS storage
+// live). Shrinks code_partition to make room, following the exact same
+// pattern as zmk-config-TouchPass's touchpass.overlay.
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        /* Shrunk from 0x000c5000 to make room for zw3021_partition below. */
+        code_partition: partition@27000 {
+            reg = <0x00027000 0x000bd000>;
+        };
+
+        /* ZW3021 per-fingerprint output strings (NVS), separate from ZMK's
+         * own settings/BLE-bonding NVS in storage_partition below. Never
+         * committed to git -- written at runtime only, via the serial RPC
+         * interface in zmk-driver-zw3021's src/serial_rpc.c. */
+        zw3021_partition: partition@e4000 {
+            label = "zw3021_storage";
+            reg = <0x000e4000 0x00008000>;
+        };
+
+        storage_partition: partition@ec000 {
+            label = "storage";
+            reg = <0x000ec000 0x00008000>;
+        };
+    };
+};
+
 &kscan0 {
         col-gpios
             = <&xiao_d 10 GPIO_ACTIVE_HIGH>
