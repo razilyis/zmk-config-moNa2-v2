@@ -24,5 +24,7 @@ include:
     cmake-args: -DCONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=4000
   - board: seeeduino_xiao_ble
     shield: mona2_l rgbled_adapter
+    snippet: zmk-usb-logging
+    cmake-args: -DCONFIG_LOG_PROCESS_THREAD_STARTUP_DELAY_MS=4000
   - board: seeeduino_xiao_ble
     shield: settings_reset
