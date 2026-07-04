@@ -3,14 +3,56 @@
 &kscan0 {
         col-gpios
             = <&xiao_d 10 GPIO_ACTIVE_HIGH>
-            , <&xiao_d 9 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 8 GPIO_ACTIVE_HIGH> 
-            , <&xiao_d 7 GPIO_ACTIVE_HIGH> 
+            , <&xiao_d 9 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 8 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 7 GPIO_ACTIVE_HIGH>
             , <&gpio0 10 GPIO_ACTIVE_HIGH>
             , <&gpio0 9 GPIO_ACTIVE_HIGH>
             ;
 };
 
+// ZW3021 fingerprint module takes over the rotary encoder's position
+// (D5/D0) plus D4 and a direct wire to P0.16; see zmk-driver-zw3021/README.md.
 &left_encoder {
+    status = "disabled";
+};
+
+&pinctrl {
+    uart1_default: uart1_default {
+        group1 {
+            psels = <NRF_PSEL(UART_TX, 0, 5)>,   /* D5 */
+                    <NRF_PSEL(UART_RX, 0, 2)>;    /* D0 */
+        };
+    };
+    uart1_sleep: uart1_sleep {
+        group1 {
+            psels = <NRF_PSEL(UART_TX, 0, 5)>,
+                    <NRF_PSEL(UART_RX, 0, 2)>;
+            low-power-enable;
+        };
+    };
+};
+
+&uart1 {
     status = "okay";
+    compatible = "nordic,nrf-uarte";
+    current-speed = <57600>;
+    pinctrl-0 = <&uart1_default>;
+    pinctrl-1 = <&uart1_sleep>;
+    pinctrl-names = "default", "sleep";
+
+    zw3021: zw3021 {
+        compatible = "razilyis,zw3021";
+        status = "okay";
+
+        /* P0.16 is not on the XIAO D0-D10 header; wired directly to the
+         * nRF52840 module (confirmed accessible/solderable on this board). */
+        int-gpios = <&gpio0 16 (GPIO_PULL_DOWN | GPIO_ACTIVE_HIGH)>;
+        power-en-gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>; /* D4 */
+
+        power-on-delay-ms = <200>;
+        startup-timeout-ms = <500>;
+        identify-timeout-ms = <12000>;
+        score-level = <3>;
+    };
 };

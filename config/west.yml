@@ -23,6 +23,9 @@
     - name: zmk-driver-paw3222
       remote: razilyis
       revision: debug-paw3222-logging
+    - name: zmk-driver-zw3021
+      remote: razilyis
+      revision: main
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: v0.3-branch
