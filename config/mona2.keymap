@@ -75,8 +75,10 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            // &zw3021_enroll 1 temporarily replaces &kp I for enroll
+            // testing; restore &kp I once done testing.
             bindings = <
-&kp Q             &kp W         &kp E    &kp R          &kp T                                                          &kp Y        &kp U  &kp I      &kp O    &kp P
+&kp Q             &kp W         &kp E    &kp R          &kp T                                                          &kp Y        &kp U  &zw3021_enroll 1  &kp O    &kp P
 &kp A             &kp S         &kp D    &kp F          &kp G                                  &kp F13                 &kp H        &kp J  &kp K      &kp L    &kp SEMICOLON
 &mt LEFT_SHIFT Z  &kp X         &kp C    &kp V          &kp B        &kp F14                   &kp F15                 &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
 &kp LCTRL         &kp LEFT_WIN  &kp F16  &kp BACKSPACE  &lt 2 ENTER  &lt_to_layer_0 3 LANG2    &lt_to_layer_0 3 LANG1  &lt 1 SPACE                             &kp LEFT_ALT
@@ -119,11 +121,15 @@
         };
 
         layer_4 {
+            // &zw3021_delete/&zw3021_clear are placeholder positions for
+            // ZW3021 fingerprint admin (Left side only does anything);
+            // move them wherever convenient. &zw3021_enroll now lives on
+            // default_layer in place of &kp I for testing.
             bindings = <
-&trans  &trans  &trans  &trans  &trans                         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans  &trans  &trans  &trans            &trans       &trans        &trans        &trans        &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans  &trans  &trans  &trans  &trans    &trans       &trans                                                  &bt BT_CLR_ALL
+&trans            &zw3021_delete 1  &zw3021_clear  &trans  &trans                         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans            &trans            &trans         &trans  &trans            &trans       &trans        &trans        &trans        &trans        &trans
+&trans            &trans            &trans         &trans  &trans  &trans    &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans            &trans            &trans         &trans  &trans  &trans    &trans       &trans                                                  &bt BT_CLR_ALL
             >;
 
             sensor-bindings = <&scroll_up_down>;
