@@ -119,11 +119,14 @@
         };
 
         layer_4 {
+            // &zw3021_enroll/&zw3021_delete/&zw3021_clear are placeholder
+            // positions for ZW3021 fingerprint admin (Left side only does
+            // anything); move them wherever convenient.
             bindings = <
-&trans  &trans  &trans  &trans  &trans                         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans  &trans  &trans  &trans            &trans       &trans        &trans        &trans        &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans  &trans  &trans  &trans  &trans    &trans       &trans                                                  &bt BT_CLR_ALL
+&zw3021_enroll 1  &zw3021_delete 1  &zw3021_clear  &trans  &trans                         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans            &trans            &trans         &trans  &trans            &trans       &trans        &trans        &trans        &trans        &trans
+&trans            &trans            &trans         &trans  &trans  &trans    &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans            &trans            &trans         &trans  &trans  &trans    &trans       &trans                                                  &bt BT_CLR_ALL
             >;
 
             sensor-bindings = <&scroll_up_down>;

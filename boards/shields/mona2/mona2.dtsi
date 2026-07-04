@@ -114,4 +114,22 @@
         triggers-per-rotation = <10>;
     };
 
+    // ZW3021 fingerprint admin behaviors. BEHAVIOR_LOCALITY_GLOBAL: these
+    // run on both L and R builds, but only L (which has the sensor) does
+    // anything; see zmk-driver-zw3021/README.md.
+    zw3021_enroll: behavior_zw3021_enroll {
+        compatible = "razilyis,zw3021-enroll";
+        #binding-cells = <1>;
+    };
+
+    zw3021_delete: behavior_zw3021_delete {
+        compatible = "razilyis,zw3021-delete";
+        #binding-cells = <1>;
+    };
+
+    zw3021_clear: behavior_zw3021_clear {
+        compatible = "razilyis,zw3021-clear";
+        #binding-cells = <0>;
+    };
+
 };
