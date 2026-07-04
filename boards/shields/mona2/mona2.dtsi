@@ -131,16 +131,19 @@
     zw3021_enroll: zwenroll {
         compatible = "razilyis,zw3021-enroll";
         #binding-cells = <1>;
+        display-name = "ZW3021 Enroll";
     };
 
     zw3021_delete: zwdelete {
         compatible = "razilyis,zw3021-delete";
         #binding-cells = <1>;
+        display-name = "ZW3021 Delete";
     };
 
     zw3021_clear: zwclear {
         compatible = "razilyis,zw3021-clear";
         #binding-cells = <0>;
+        display-name = "ZW3021 Clear";
     };
 
 };
