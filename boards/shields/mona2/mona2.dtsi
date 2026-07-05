@@ -59,7 +59,8 @@
             , <&key_physical_attrs 100 100  800  300       0     0     0>
             , <&key_physical_attrs 100 100 1200  300       0     0     0>
 
-            // ZW3021 virtual output keyboard (36 slots: '0'-'9' then 'a'-'z').
+            // ZW3021 virtual output keyboard (38 slots: '0'-'9', 'a'-'z',
+            // then LSHIFT and Enter -- see the two slots after this block).
             // Never scanned by real kscan hardware -- see the matching
             // RC(4,N) entries below. Used by zw3021.c to type out
             // per-fingerprint NVS-stored strings one character at a time;
@@ -101,9 +102,14 @@
             , <&key_physical_attrs 100 100 1000  600       0     0     0>
             , <&key_physical_attrs 100 100 1100  600       0     0     0>
 
-            // 37th virtual slot: Enter, sent after the output string when
-            // enabled per-fingerprint-ID (see zw3021.c ZW3021_OUTPUT_ENTER_OFFSET).
+            // 37th virtual slot: LSHIFT, held while typing an uppercase
+            // letter of the output string (see zw3021.c
+            // ZW3021_OUTPUT_SHIFT_OFFSET).
             , <&key_physical_attrs 100 100 1200  600       0     0     0>
+
+            // 38th virtual slot: Enter, sent after the output string when
+            // enabled per-fingerprint-ID (see zw3021.c ZW3021_OUTPUT_ENTER_OFFSET).
+            , <&key_physical_attrs 100 100 1300  600       0     0     0>
             ;
     };
 
@@ -122,7 +128,7 @@
             RC(4,0) RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5) RC(4,6) RC(4,7) RC(4,8) RC(4,9) RC(4,10) RC(4,11)
             RC(4,12) RC(4,13) RC(4,14) RC(4,15) RC(4,16) RC(4,17) RC(4,18) RC(4,19) RC(4,20) RC(4,21) RC(4,22) RC(4,23)
             RC(4,24) RC(4,25) RC(4,26) RC(4,27) RC(4,28) RC(4,29) RC(4,30) RC(4,31) RC(4,32) RC(4,33) RC(4,34) RC(4,35)
-            RC(4,36)
+            RC(4,36) RC(4,37)
         >;
     };
     
