@@ -90,6 +90,9 @@
 &kp NUMBER_0 &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp A &kp B
 &kp C &kp D &kp E &kp F &kp G &kp H &kp I &kp J &kp K &kp L &kp M &kp N
 &kp O &kp P &kp Q &kp R &kp S &kp T &kp U &kp V &kp W &kp X &kp Y &kp Z
+// 37th virtual slot: Enter, sent after the output string when enabled
+// per-fingerprint-ID via the serial RPC's set_finger_enter command.
+&kp ENTER
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -105,6 +108,7 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans
             >;
 
             sensor-bindings = <&scroll_right_left>;
@@ -120,6 +124,7 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -135,6 +140,7 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
@@ -154,6 +160,7 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -169,6 +176,7 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -184,6 +192,7 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
