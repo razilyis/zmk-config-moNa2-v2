@@ -83,15 +83,19 @@
 &mt LEFT_SHIFT Z  &kp X         &kp C    &kp V          &kp B        &kp F14                   &kp F15                 &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
 &kp LCTRL         &kp LEFT_WIN  &kp F16  &kp BACKSPACE  &lt 2 ENTER  &lt_to_layer_0 3 LANG2    &lt_to_layer_0 3 LANG1  &lt 1 SPACE                             &kp LEFT_ALT
 
-// ZW3021 virtual output keyboard (positions 41-78, row 4 in the transform):
+// ZW3021 virtual output keyboard (positions 41-92, row 4 in the transform):
 // what &zw3021_emit_string() in zw3021.c actually "types" per character.
 // Only meaningful here on default_layer -- other layers pass these through
 // via &trans below.
 &kp NUMBER_0 &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp A &kp B
 &kp C &kp D &kp E &kp F &kp G &kp H &kp I &kp J &kp K &kp L &kp M &kp N
 &kp O &kp P &kp Q &kp R &kp S &kp T &kp U &kp V &kp W &kp X &kp Y &kp Z
-// 37th virtual slot: LSHIFT, held while typing an uppercase letter (see
-// zw3021.c ZW3021_OUTPUT_SHIFT_OFFSET). 38th: Enter, sent after the
+// Virtual slots 37-50: US-keyboard top-row symbols (! @ # $ % ^ & * ( ) - _ = +,
+// see zw3021.c ZW3021_OUTPUT_SYMBOL_BASE / zw3021_char_to_offset()).
+&kp EXCLAMATION &kp AT_SIGN &kp POUND &kp DOLLAR &kp PERCENT &kp CARET &kp AMPERSAND &kp ASTERISK &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp MINUS &kp UNDERSCORE
+&kp EQUAL &kp PLUS
+// 51st virtual slot: LSHIFT, held while typing an uppercase letter (see
+// zw3021.c ZW3021_OUTPUT_SHIFT_OFFSET). 52nd: Enter, sent after the
 // output string when enabled per-fingerprint-ID via the serial RPC's
 // set_finger_enter command.
 &kp LSHIFT &kp ENTER
@@ -110,7 +114,8 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans
             >;
 
             sensor-bindings = <&scroll_right_left>;
@@ -126,7 +131,8 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -142,7 +148,8 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
@@ -162,7 +169,8 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -178,7 +186,8 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
@@ -194,7 +203,8 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans
             >;
 
             sensor-bindings = <&scroll_up_down>;
