@@ -59,9 +59,9 @@
             , <&key_physical_attrs 100 100  800  300       0     0     0>
             , <&key_physical_attrs 100 100 1200  300       0     0     0>
 
-            // ZW3021 virtual output keyboard (52 slots: '0'-'9', 'a'-'z',
-            // then the US-keyboard top-row symbols, LSHIFT, and Enter --
-            // see the slots after this block).
+            // ZW3021 virtual output keyboard (54 slots: '0'-'9', 'a'-'z',
+            // then the US-keyboard top-row symbols plus . and ,, LSHIFT,
+            // and Enter -- see the slots after this block).
             // Never scanned by real kscan hardware -- see the matching
             // RC(4,N) entries below. Used by zw3021.c to type out
             // per-fingerprint NVS-stored strings one character at a time;
@@ -103,8 +103,9 @@
             , <&key_physical_attrs 100 100 1000  600       0     0     0>
             , <&key_physical_attrs 100 100 1100  600       0     0     0>
 
-            // Virtual slots 37-50: US-keyboard top-row symbols
-            // (! @ # $ % ^ & * ( ) - _ = +, in that order -- see zw3021.c
+            // Virtual slots 37-52: US-keyboard top-row symbols
+            // (! @ # $ % ^ & * ( ) - _ = +) plus . , (needed for email
+            // addresses), in that order -- see zw3021.c
             // ZW3021_OUTPUT_SYMBOL_BASE / zw3021_char_to_offset()).
             , <&key_physical_attrs 100 100    0  700       0     0     0>
             , <&key_physical_attrs 100 100  100  700       0     0     0>
@@ -120,13 +121,15 @@
             , <&key_physical_attrs 100 100 1100  700       0     0     0>
             , <&key_physical_attrs 100 100 1200  700       0     0     0>
             , <&key_physical_attrs 100 100 1300  700       0     0     0>
+            , <&key_physical_attrs 100 100 1400  700       0     0     0>
+            , <&key_physical_attrs 100 100 1500  700       0     0     0>
 
-            // 51st virtual slot: LSHIFT, held while typing an uppercase
+            // 53rd virtual slot: LSHIFT, held while typing an uppercase
             // letter of the output string (see zw3021.c
             // ZW3021_OUTPUT_SHIFT_OFFSET).
             , <&key_physical_attrs 100 100 1200  600       0     0     0>
 
-            // 52nd virtual slot: Enter, sent after the output string when
+            // 54th virtual slot: Enter, sent after the output string when
             // enabled per-fingerprint-ID (see zw3021.c ZW3021_OUTPUT_ENTER_OFFSET).
             , <&key_physical_attrs 100 100 1300  600       0     0     0>
             ;
@@ -148,7 +151,7 @@
             RC(4,12) RC(4,13) RC(4,14) RC(4,15) RC(4,16) RC(4,17) RC(4,18) RC(4,19) RC(4,20) RC(4,21) RC(4,22) RC(4,23)
             RC(4,24) RC(4,25) RC(4,26) RC(4,27) RC(4,28) RC(4,29) RC(4,30) RC(4,31) RC(4,32) RC(4,33) RC(4,34) RC(4,35)
             RC(4,36) RC(4,37) RC(4,38) RC(4,39) RC(4,40) RC(4,41) RC(4,42) RC(4,43) RC(4,44) RC(4,45) RC(4,46) RC(4,47)
-            RC(4,48) RC(4,49) RC(4,50) RC(4,51)
+            RC(4,48) RC(4,49) RC(4,50) RC(4,51) RC(4,52) RC(4,53)
         >;
     };
     
